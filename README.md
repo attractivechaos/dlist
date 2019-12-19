@@ -3,7 +3,7 @@
 Unlike C++, the C programming language doesn't provide a general mechanism to
 implement generic data structures or algorithms. However, it is still possible
 to write generic C code matching the performance of type-specific
-implemntations. This repo demonstrates four ways to implement a generic
+implemntations. This repo demonstrates five ways to implement a generic
 double-linked list in C. Some of these techniques can be adapted to other data
 structures with no compromise on performance.
 
@@ -23,10 +23,14 @@ structures with no compromise on performance.
    preferred way to implement binary trees (see [kavl.h][kavl]), but for
    double-linked list, it is more complex.
 
-4. With macros (`*-macro.*`). This approach can be optimal for all common data
+4. With macros (`*-macro1.*`). This approach can be optimal for all common data
    structures. However, it involves unusual syntax and is inflexible in terms of
    memory management at the caller end. My [khash.h][khash] library is
    implemented this way. STL containers also follow a similar rationale.
+
+5. With before-header macros (`*-macro2.*`). This is an alternative way to
+   implement method 4 and is functionally equivalent. It gets rid of long
+   multi-line macros but complicates header inclusion.
 
 I recommend method 2 for double-linked lists, 3 for binary search trees such as
 red-black or AVL trees, and method 4 for plain vectors and closed hash tables.

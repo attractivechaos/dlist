@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "dl-macro1.h"
-DL_IMPL(my, int)
+DL_IMPL(my, static inline, int)
 
 int main(void)
 {
