@@ -1,6 +1,8 @@
 #include <stdlib.h>
 #include "dl-void.h"
 
+// see dl-intru2.* for the algorithm
+
 #define CALLOC(type, len) (type*)calloc((len), sizeof(type))
 
 typedef struct dl_node_s {
@@ -12,10 +14,7 @@ struct dl_list_s {
 	dl_node_t *head[2];
 };
 
-dl_list_t *dl_init(void)
-{
-	return (dl_list_t*)calloc(1, sizeof(dl_list_t));
-}
+dl_list_t *dl_init(void) { return CALLOC(dl_list_t, 1); }
 
 void dl_push(dl_list_t *list, void *data, int dir)
 {

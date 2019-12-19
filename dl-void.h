@@ -1,7 +1,7 @@
 #ifndef DL_VOID_H
 #define DL_VOID_H
 
-struct dl_list_s;
+struct dl_list_s; // opaque struct
 typedef struct dl_list_s dl_list_t;
 
 #ifdef __cplusplus

@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <stdio.h>
-#include "dl-macro.h"
+#include "dl-macro1.h"
 DL_IMPL(my, int)
 
 int main(void)

@@ -6,7 +6,7 @@
 
 typedef struct {
 	int x;
-	dl_head_t head;
+	dl_head_t head; // this field forms a double-linked list
 } my_elem_t;
 
 int main(void)
@@ -14,15 +14,15 @@ int main(void)
 	int i, N = 5;
 	dl_head_t *head[2] = {0, 0};
 	for (i = 0; i < N; ++i) {
-		my_elem_t *p = MALLOC(my_elem_t, 1);
+		my_elem_t *p = MALLOC(my_elem_t, 1); // caller controls all memory allocations
 		p->x = i;
-		dl_push(head, &p->head, 1);
+		dl_push(head, &p->head, 1); // push_back()
 	}
 	while (head[0]) {
-		dl_head_t *p = dl_pop(head, 0);
-		my_elem_t *q = dl_container_of(p, my_elem_t, head);
+		dl_head_t *p = dl_pop(head, 0); // pop_front()
+		my_elem_t *q = dl_container_of(p, my_elem_t, head); // pointer to the parent struct
 		printf("out: %d\n", q->x);
-		free(q);
+		free(q); // again, caller controls memory
 	}
 	return 0;
 }

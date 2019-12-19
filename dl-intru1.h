@@ -1,10 +1,12 @@
 #ifndef DL_INTRU1_H
 #define DL_INTRU1_H
 
+// see dl-intru2.* for description of the APIs and the implementation
+
 #define DL_HEAD(_type) struct { _type *p[2]; }
 
-#define DL_IMPL(suf, _type, _head) \
-	static inline void dl_push_##suf(_type *head[2], _type *p, int dir) { \
+#define DL_IMPL(suf, _type, _head) /* suf creates a name space for a specific type to avoid naming clash */ \
+	static inline void dl_push_##suf(_type *head[2], _type *p, int dir) { /* ##suf for token concatenation */ \
 		dir = !!dir; /* 0 or 1 */ \
 		p->_head.p[0] = p->_head.p[1] = 0; \
 		if (head[0] == 0 && head[1] == 0) head[0] = head[1] = p; \
@@ -19,6 +21,7 @@
 		return p; \
 	}
 
+// more convenient macro APIs
 #define dl_push(suf, head, p, dir) dl_push_##suf(head, p, dir)
 #define dl_pop(suf, head, dir) dl_pop_##suf(head, dir)
 

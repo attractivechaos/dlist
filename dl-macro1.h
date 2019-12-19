@@ -1,10 +1,12 @@
 #ifndef DL_MACRO_H
 #define DL_MACRO_H
 
+// see dl-intru2.* for details on the methodology
+
 #define DL_CALLOC(type, len) (type*)calloc((len), sizeof(type))
 
-#define DL_IMPL(name, _type) \
-	typedef struct dl_node_##name##_s { \
+#define DL_IMPL(name, _type) /* name creates a name space for a specific data type to avoid naming clash */ \
+	typedef struct dl_node_##name##_s { /* ##name## for token concatenation */ \
 		_type data; \
 		struct dl_node_##name##_s *p[2]; \
 	} dl_node_##name##_t; \
@@ -17,7 +19,7 @@
 		if (list->head[0] == 0 && list->head[1] == 0) list->head[0] = list->head[1] = p; \
 		else list->head[dir]->p[dir] = p, p->p[!dir] = list->head[dir], list->head[dir] = p; \
 	} \
-	static inline int dl_pop_##name(dl_list_##name##_t *list, _type *data, int dir) { \
+	static inline int dl_pop_##name(dl_list_##name##_t *list, _type *data, int dir) { /* *data is only set if 1 is returned */ \
 		dl_node_##name##_t *p; \
 		dir = !!dir; \
 		if (list->head[0] == 0 && list->head[1] == 0) return 0; \
