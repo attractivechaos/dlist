@@ -9,7 +9,7 @@ structures with no compromise on performance.
 
 1. With `void*` pointers (`*-void.*`). This is the most common but often the
    least efficient way to implement generic data structures. It requires extra
-   malloc per element, which wastes memory and data locality. I don't recommend
+   malloc per element, which wastes memory and hurts data locality. I don't recommend
    it.
 
 2. With intrusive data structures (`*-intru2.*`). This approach doesn't call
@@ -27,6 +27,9 @@ structures with no compromise on performance.
    structures. However, it involves unusual syntax and is inflexible in terms of
    memory management at the caller end. My [khash.h][khash] library is
    implemented this way. STL containers also follow a similar rationale.
+
+I recommend method 2 for double-linked lists, 3 for binary search trees such as
+red-black or AVL trees, and method 4 for plain vectors and closed hash tables.
 
 [closed-hash]: https://en.wikipedia.org/wiki/Open_addressing
 [khash]: https://github.com/attractivechaos/klib/blob/master/khash.h
