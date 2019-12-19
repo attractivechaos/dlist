@@ -7,8 +7,8 @@ all:$(EXE)
 test-intru1:test-intru1.c dl-intru1.h
 	$(CC) -Wall -g -O2 -o $@ $<
 
-test-intru2:test-intru2.c dl-intru2.h
-	$(CC) -Wall -g -O2 -o $@ $<
+test-intru2:test-intru2.c dl-intru2.c dl-intru2.h
+	$(CC) -Wall -g -O2 -o $@ test-intru2.c dl-intru2.c
 
 test-macro:test-macro.c dl-macro.h
 	$(CC) -Wall -g -O2 -o $@ $<
