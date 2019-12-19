@@ -1,10 +1,13 @@
-EXE=test-intru1 test-void
+EXE=test-intru1 test-macro test-void
 
 .PHONY:all clean
 
 all:$(EXE)
 
 test-intru1:test-intru1.c dl-intru1.h
+	$(CC) -Wall -g -O2 -o $@ $<
+
+test-macro:test-macro.c dl-macro.h
 	$(CC) -Wall -g -O2 -o $@ $<
 
 test-void:test-void.c dl-void.c dl-void.h
